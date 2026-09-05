@@ -12,8 +12,12 @@ config_version=5
 
 config/name="AARPG-Godot-Learning"
 run/main_scene="res://playground.tscn"
-config/features=PackedStringArray("4.7", "Forward Plus")
+config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+LevelManager="*uid://dyur2lol31kp0"
 
 [display]
 
