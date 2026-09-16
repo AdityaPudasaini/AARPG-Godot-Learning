@@ -23,6 +23,7 @@ func _ready() -> void:
 	state_machine.Initialize(self)
 	PlayerManager.player = self
 	hit_box.Damaged.connect( _take_damage )
+	update_hp(99)
 	pass # Replace with function body.
 
 
@@ -77,10 +78,12 @@ func AnimDirection() -> String:
 		return "side"
 	
 func _take_damage( hurt_box : HurtBox ) -> void:
+	print("PLAYER TOOK DAMAGE: ", hurt_box.damage)
+	
 	if invunerable ==  true:
 		return
 	
-	update_hp( hurt_box.damage )
+	update_hp( -hurt_box.damage )
 	
 	if hp > 0:
 		player_damaged.emit( hurt_box )
@@ -91,6 +94,7 @@ func _take_damage( hurt_box : HurtBox ) -> void:
 
 func update_hp( delta : int ) -> void:
 	hp = clampi( hp + delta, 0, max_hp)
+	PlayerHud.update_hp( hp, max_hp )
 	pass
 
 func make_invunerable( _duration : float ) -> void:
